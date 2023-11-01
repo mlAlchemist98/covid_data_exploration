@@ -23,6 +23,14 @@ select sum(new_cases) as total_cases, sum(new_deaths) as total_deaths, sum(new_d
 from `linear-ellipse-396212.1.covid_deaths`
 where continent is not null;
 
+-- Total number of deaths per continent
+
+select location, sum(new_deaths) as total_deaths
+from `linear-ellipse-396212.1.covid_deaths`
+where continent is null and location not in ('World', 'European Union', 'International')
+group by location
+order by total_deaths desc;
+
 -- Total Deaths vs Total Deaths in Kazakhstan
 -- What percentage of patients with Covid-19 has died
 
